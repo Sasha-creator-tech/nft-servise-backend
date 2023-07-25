@@ -5,7 +5,8 @@
     "serve": "node dist/src/app.js",
     "dev": "node -r ts-node/register ./src/app.ts",
     "dev:watch": "nodemon",
-    "build": "tsc"
+    "build": "tsc",
+    "migrate": "ts-node src/migrate.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
@@ -14,9 +15,14 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "pg": "^8.11.1",
     "prettier": "^2.8.7",
     "routing-controllers": "^0.10.2",
-    "ts-node": "^10.9.1"
+    "sequelize": "^5.22.5",
+    "sequelize-cli": "^6.6.0",
+    "sequelize-typescript": "^1.1.0",
+    "ts-node": "^10.9.1",
+    "umzug": "^2.3.0"
   },
   "nodemonConfig": {
     "ignore": [
