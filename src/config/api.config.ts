@@ -1,6 +1,8 @@
+import { NftTokenController } from "../controllers/nftToken.controller";
+
 const expressOptions = {
     rourePrefix: "/api",
-    controllers: [],
+    controllers: [NftTokenController],
     middlewares: [],
 };
 
