@@ -9,6 +9,12 @@ const app: Express = createExpressServer(expressOptions);
 const port: number | string = process.env.PORT || 4000;
 database.addModels([__dirname + "/models"]);
 
-app.listen(port, () => {
-    console.log(`server is up and listening on port ${port}`);
+const server = app.listen(port, () => {
+    console.log(`Server is up and listening on port ${port}`);
 });
+
+//exported for unit tests
+export default {
+    app,
+    server,
+};

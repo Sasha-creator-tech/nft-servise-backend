@@ -2,7 +2,7 @@ import { NftTokenController } from "../controllers/nftToken.controller";
 import { UserController } from "../controllers/user.controller";
 
 const expressOptions = {
-    rourePrefix: "/api",
+    routePrefix: "/api",
     controllers: [NftTokenController, UserController],
     middlewares: [],
 };
