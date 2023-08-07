@@ -6,6 +6,7 @@ const config: any = {
     dialect: "postgres",
     query: { raw: false },
     // TODO: add logging
+    logging: false,
 };
 
 export const database: Sequelize = new Sequelize(
