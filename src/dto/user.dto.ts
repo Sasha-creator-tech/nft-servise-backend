@@ -1,8 +1,21 @@
-import { IsEthereumAddress, IsOptional } from "class-validator";
+import {
+    IsEthereumAddress,
+    IsInt,
+    IsOptional,
+    IsString,
+} from "class-validator";
 
 export class UserDto {
     @IsEthereumAddress()
     readonly address: string;
+}
+
+export class UserAuth extends UserDto {
+    @IsString()
+    readonly signature: string;
+
+    @IsInt()
+    readonly signatureTimestamp: number;
 }
 
 export class UserBalanceDto {
