@@ -30,4 +30,11 @@ export default class UserBalance extends Model<UserBalance> {
 
     @BelongsTo(() => NftId)
     nftId: NftId;
+
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    })
+    balance: number;
 }
