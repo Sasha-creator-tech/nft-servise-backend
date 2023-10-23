@@ -5,11 +5,12 @@ import NftId from "../models/nftIds.model";
 import NFTToken from "../models/nftTokens.model";
 import { BaseService } from "./base.service";
 import Brand from "../models/brands.model";
+import { Op } from "sequelize";
 
 export class UserService extends BaseService {
     public async getBalance(
         queryData: UserDto,
-        bodyData: UserBalanceDto
+        bodyData: UserBalanceDto,
     ): Promise<UserBalance[]> {
         let tokenWhere = {} as { address: string | string[] };
         if (bodyData.tokenAddress) {
@@ -18,6 +19,11 @@ export class UserService extends BaseService {
 
         return UserBalance.findAll({
             attributes: ["balance"],
+            where: {
+                balance: {
+                    [Op.gt]: 0,
+                },
+            },
             include: [
                 {
                     attributes: [],
