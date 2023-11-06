@@ -5,8 +5,10 @@ import {
     DataType,
     ForeignKey,
     BelongsTo,
+    HasMany,
 } from "sequelize-typescript";
 import Brand from "./brands.model";
+import NftId from "./nftIds.model";
 
 @Table({ tableName: "NFTTokens" })
 export default class NFTToken extends Model<NFTToken> {
@@ -33,4 +35,7 @@ export default class NFTToken extends Model<NFTToken> {
 
     @BelongsTo(() => Brand)
     brand!: Brand;
+
+    @HasMany(() => NftId)
+    nftIds: NftId[];
 }

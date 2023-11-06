@@ -2,6 +2,7 @@ import {
     Get,
     JsonController,
     OnNull,
+    Param,
     QueryParams,
     UseInterceptor,
 } from "routing-controllers";
@@ -16,8 +17,17 @@ export class NftTokenController {
     @OnNull(404)
     @UseInterceptor(NftTokenInterceptor)
     public async getAllNftTokens(
-        @QueryParams() query: NftTokenDto
+        @QueryParams() query: NftTokenDto,
     ): Promise<NFTToken[]> {
         return await nftTokenService.getAllNftTokens(query);
+    }
+
+    @Get("/:address")
+    @OnNull(404)
+    @UseInterceptor(NftTokenInterceptor)
+    public async getNftToken(
+        @Param("address") address: string,
+    ): Promise<NFTToken> {
+        return await nftTokenService.getNftToken(address);
     }
 }
