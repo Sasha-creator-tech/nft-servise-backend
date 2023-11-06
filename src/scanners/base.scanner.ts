@@ -2,7 +2,21 @@ import ScannedBlocks from "../models/scannedBlocks.model";
 import { ethers } from "ethers";
 import { eventFiltersType, eventResultType } from "../types/eventFilters.type";
 
-export class BaseScanner {
+export abstract class BaseScanner {
+    abstract startScanning(chainId: number, address: string): Promise<number>;
+    protected abstract scanEvents(
+        chainId: number,
+        address: string,
+        startBlock: number,
+        currentBlock: number,
+        collectionId?: number,
+    ): Promise<number>;
+    protected abstract processEvents(
+        parsedLogs: ethers.utils.LogDescription[],
+        chainId: number,
+        scannedBlocks: number,
+    ): Promise<void>;
+
     protected BLOCKS_TO_SCAN: number = 1000;
 
     protected async getScannedBlocks(

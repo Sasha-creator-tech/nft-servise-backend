@@ -43,7 +43,7 @@ class CollectionScanner extends BaseScanner {
         });
     }
 
-    private async scanEvents(
+    protected async scanEvents(
         chainId: number,
         address: string,
         collectionId: number,

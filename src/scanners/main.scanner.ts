@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import { setTimeout } from "timers/promises";
 import mainContractAbi from "../scanners/abi/mainContractABI.json";
 import { scannerService } from "../services/scanner.service";
+import { collectionScanner } from "./collection.scanner";
 dotenv.config();
 
 class MainScanner extends BaseScanner {
@@ -21,7 +22,7 @@ class MainScanner extends BaseScanner {
         return this.scanEvents(chainId, address, startBlock, currentBlock);
     }
 
-    private async scanEvents(
+    protected async scanEvents(
         chainId: number,
         address: string,
         startBlock: number,

@@ -3,10 +3,12 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasMany,
     Model,
     Table,
 } from "sequelize-typescript";
 import NFTToken from "./nftTokens.model";
+import UserBalance from "./userBalance.model";
 
 @Table({ tableName: "NFTIds" })
 export default class NftId extends Model<NftId> {
@@ -32,4 +34,7 @@ export default class NftId extends Model<NftId> {
         defaultValue: 0,
     })
     amount?: number;
+
+    @HasMany(() => UserBalance)
+    userBalances: UserBalance[];
 }
