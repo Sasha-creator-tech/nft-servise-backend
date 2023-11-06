@@ -13,4 +13,10 @@ export default class Brand extends Model<Brand> {
         allowNull: false,
     })
     url!: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: true,
+    })
+    logoUrl?: string;
 }

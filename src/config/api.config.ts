@@ -1,5 +1,6 @@
 import { NftTokenController } from "../controllers/nftToken.controller";
 import { UserController } from "../controllers/user.controller";
+import { BrandController } from "../controllers/brand.controller";
 import { requireAuth } from "../middleware/auth.middleware";
 import { Action } from "routing-controllers";
 import passport, { use } from "passport";
@@ -28,7 +29,7 @@ const getUserFromJWT = function (action: Action) {
 
 const expressOptions = {
     routePrefix: "/api",
-    controllers: [NftTokenController, UserController],
+    controllers: [NftTokenController, UserController, BrandController],
     currentUserChecker,
     authorizationChecker: async (action: Action, roles: []) =>
         new Promise<boolean>((resolve, reject) => {
