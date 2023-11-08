@@ -5,6 +5,8 @@ import { requireAuth } from "../middleware/auth.middleware";
 import { Action } from "routing-controllers";
 import passport, { use } from "passport";
 import { userSoleService } from "../services/userRole.service";
+import { IframeController } from "../controllers/iframe.controller";
+import { VerificationController } from "../controllers/verification.controller";
 
 const currentUserChecker = async function (action: Action) {
     if (action.request.user) {
@@ -29,7 +31,13 @@ const getUserFromJWT = function (action: Action) {
 
 const expressOptions = {
     routePrefix: "/api",
-    controllers: [NftTokenController, UserController, BrandController],
+    controllers: [
+        NftTokenController,
+        UserController,
+        BrandController,
+        IframeController,
+        VerificationController,
+    ],
     currentUserChecker,
     authorizationChecker: async (action: Action, roles: []) =>
         new Promise<boolean>((resolve, reject) => {

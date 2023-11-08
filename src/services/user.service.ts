@@ -56,6 +56,61 @@ export class UserService extends BaseService {
             ],
         });
     }
+
+    public async checkBalance(
+        address: string,
+        onchainId: number,
+        token: string,
+        brand: string,
+    ): Promise<UserBalance> {
+        return UserBalance.findOne({
+            attributes: ["id"],
+            where: {
+                balance: {
+                    [Op.gt]: 0,
+                },
+            },
+            include: [
+                {
+                    attributes: [],
+                    model: User,
+                    required: true,
+                    where: {
+                        user_address: this.formatEthAddress(address),
+                    },
+                },
+                {
+                    attributes: ["id", "isUsed"],
+                    model: NftId,
+                    required: true,
+                    where: {
+                        onchain_id: onchainId,
+                        isUsed: false,
+                    },
+                    include: [
+                        {
+                            attributes: [],
+                            model: NFTToken,
+                            required: true,
+                            where: {
+                                address: this.formatEthAddress(token),
+                            },
+                            include: [
+                                {
+                                    attributes: [],
+                                    model: Brand,
+                                    required: true,
+                                    where: {
+                                        name: brand,
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        });
+    }
 }
 
 export const userService = new UserService();

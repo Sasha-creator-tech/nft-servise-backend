@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(initializeAuth);
 app.use(
     cors({
-        origin: process.env.FRONTEND_URL,
+        // TODO: move side for cors to json config
+        origin: [process.env.FRONTEND_URL, "http://localhost:8081"],
     }),
 );
 const expressServer = createExpressServer(expressOptions);

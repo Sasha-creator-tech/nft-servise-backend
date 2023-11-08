@@ -29,6 +29,12 @@ export default class NftId extends Model<NftId> {
     onchain_id!: number;
 
     @Column({
+        type: DataType.BOOLEAN,
+        allowNull: false,
+    })
+    isUsed: boolean;
+
+    @Column({
         type: DataType.INTEGER,
         allowNull: false,
         defaultValue: 0,
