@@ -18,7 +18,7 @@ import { UserInterceptor } from "./interceptors/user.interceptor";
 import User from "../models/user.model";
 import jwt from "jsonwebtoken";
 import { BaseService } from "../services/base.service";
-import { Helpers } from "../helpers";
+import { helpers } from "../helpers";
 import UserRole from "../models/userRole.model";
 
 const baseService: BaseService = new BaseService();
@@ -31,8 +31,9 @@ export class UserController {
             throw new BadRequestError("Signature data is not provided");
         }
         //Check whether signature is correct
+
         if (
-            !Helpers.isValidSignature(
+            !helpers.isValidAuthSignature(
                 body.address,
                 body.signature,
                 body.signatureTimestamp,
